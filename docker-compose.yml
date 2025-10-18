@@ -1,0 +1,38 @@
+# docker-compose.yml
+
+services:
+  db:
+    # Usamos una imagen oficial de MySQL 5.7 que es más compatible
+    image: mysql:5.7
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "rootpass"
+      MYSQL_DATABASE: "sample"
+      MYSQL_USER: "sampleuser"
+      MYSQL_PASSWORD: "samplepass"
+    ports:
+      - "3306:3306"
+    volumes:
+      # Montamos el volumen para persistir datos
+      - mysql_data:/var/lib/mysql
+      # Montamos el SQL para que se cargue al iniciar
+      - ./sql/db.sql:/docker-entrypoint-initdb.d/db.sql
+
+  php-front:
+    container_name: php-front
+    restart: always
+    build:
+      # El contexto ahora es el directorio raíz '.'
+      context: .
+      dockerfile: frontend/Dockerfile
+    environment:
+      # Pasamos el nombre del host de la DB a nuestro script PHP
+      DB_HOST: db
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:
