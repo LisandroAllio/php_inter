@@ -1,4 +1,4 @@
-# frontend/Dockerfile
+# Dockerfile
 FROM php:7.2-apache
 
 # >> INICIO DE LA CORRECCIÓN <<
@@ -33,5 +33,7 @@ RUN mkdir -p logs && chown -R www-data:www-data logs
 # 7. Configurar Apache
 COPY apache/default-site.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite && a2ensite 000-default
+
+ENV DB_HOST=<PRIVITE_IP_DB>
 
 EXPOSE 80
