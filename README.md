@@ -71,14 +71,13 @@ Esta versión usa un **Dockerfile** dentro del directorio `db/` que:
 - Inicializa la base de datos automáticamente con el script `sql/db.sql`.
 
 ```bash
-# Desde la carpeta db/
-docker build -t my-mysql-db .
+docker build -t mysql-db -f db/Dockerfile .
 ```
 
 Luego ejecutá el contenedor:
 
 ```bash
-docker run -d -p 3306:3306 --name db-container my-mysql-db
+docker run -d -p 3306:3306 --name db-container mysql-db
 ```
 
 ---
@@ -94,7 +93,7 @@ docker run -d -p 3306:3306 --name db-container my-mysql-db
 2. Construí y levantá el contenedor:
 
    ```bash
-   docker build -t php-front .
+   docker build -t php-front -f db/Dockerfile .
    docker run -d -p 80:80 --name php-app php-front
    ```
 
