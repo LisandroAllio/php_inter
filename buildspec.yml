@@ -15,7 +15,7 @@ phases:
       - echo Pushing image to ECR...
       - docker push 643681787571.dkr.ecr.us-east-1.amazonaws.com/lab/front:latest
       - echo Writing image definitions file...
-      - printf '[{"name":"php-front","imageUri":"%s"}]' 643681787571.dkr.ecr.us-east-1.amazonaws.com/lab/front:latest > imagedefinitions.json
+      - printf '[{"name":"php-conteiner","imageUri":"%s"}]' 643681787571.dkr.ecr.us-east-1.amazonaws.com/lab/front:latest > imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json
