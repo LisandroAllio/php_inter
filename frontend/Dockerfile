@@ -1,5 +1,6 @@
 # frontend/Dockerfile
-FROM php:7.2-apache
+#FROM php:7.2-apache
+FROM public.ecr.aws/docker/library/php:7.2-apache
 
 # >> INICIO DE LA CORRECCIÓN <<
 # Le decimos a apt que use los repositorios archivados para Debian "Buster"
