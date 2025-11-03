@@ -1,10 +1,16 @@
 version: 0.2
 
+env:
+  parameter-store:
+    AWS_REGION: "/codebuild/AWS_REGION"
+    ECR_REGISTRY: "/codebuild/ECR_REGISTRY"
+    ECR_REPOSITORY: "/codebuild/ECR_REPOSITORY"
+
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 643681787571.dkr.ecr.us-east-1.amazonaws.com  
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY  
   build:
     commands:
       - echo Building the Docker image...
