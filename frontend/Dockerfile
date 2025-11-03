@@ -2,6 +2,7 @@
 #FROM php:7.2-apache
 FROM public.ecr.aws/docker/library/php:7.2-apache
 
+
 # >> INICIO DE LA CORRECCIÓN <<
 # Le decimos a apt que use los repositorios archivados para Debian "Buster"
 RUN sed -i -e 's/deb.debian.org/archive.debian.org/g' \
@@ -16,7 +17,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo pdo_mysql
 
 # 2. Instalar Composer (manejador de dependencias de PHP)
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+#COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=public.ecr.aws/docker/library/composer:latest /usr/bin/composer /usr/bin/composer
+
 
 # 3. Copiar todo el código de la aplicación
 COPY . /var/www/html
