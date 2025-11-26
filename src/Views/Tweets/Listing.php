@@ -22,15 +22,16 @@ class Listing
         $userId = htmlspecialchars($this->user->id);
         $userName = htmlspecialchars($this->user->name);
         ?>
-        <div class="col-xs-6 col-sm-5 col-md-4 col-lg-3">
-            <div class="panel panel-default">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="panel panel-default" style="margin-bottom: 20px;">
                 <div class="panel-body">
                     <div class="row">
-                        <a class="col-xs-3" href="/<?= $userId ?>" title="<?= $userName ?>" tabindex="-1" aria-hidden="true" rel="noopener">
-                            <img alt="@<?= $userId ?> avatar" class="img-rounded" src="/img/<?= $userId ?>">
-                        </a>
-
-                        <div class="col-xs-9">
+                        <div class="col-xs-3">
+                            <a href="/<?= $userId ?>" title="<?= $userName ?>" rel="noopener">
+                                <img alt="@<?= $userId ?> avatar" class="img-rounded" src="/img/<?= $userId ?>" style="width: 64px; height: 64px;">
+                            </a>
+                        </div>
+                        <div class="col-xs-6">
                             <div>
                                 <a href="/<?= $userId ?>" rel="noopener"><strong class="fullname"><?= $userName ?></strong></a>
                             </div>
@@ -38,10 +39,7 @@ class Listing
                                 <a href="/<?= $userId ?>" rel="noopener">@<span><?= $userId ?></span></a>
                             </span>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-3">
+                        <div class="col-xs-3 text-center">
                             <h5>
                                 <small>TWEETS</small>
                                 <a href="#"><?= $this->tweetsCount ?></a>
@@ -50,8 +48,6 @@ class Listing
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-6 col-sm-7 col-md-8 col-lg-9">
             <div class="panel panel-info">
                 <div class="panel-body">
                 <?php
